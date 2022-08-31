@@ -21,12 +21,13 @@ module.exports = {
             components: path.join(__dirname, 'src/components'),
             api: path.join(__dirname, 'src/api'),
             types: path.join(__dirname, 'src/types'),
+            pages: path.join(__dirname, 'src/pages'),
             fonts: path.join(__dirname, 'src/styles/fonts'),
             utils: path.join(__dirname, 'src/utils'),
+            hooks: path.join(__dirname, 'src/hooks'),
+            services: path.join(__dirname, 'src/services'),
             assets: path.join(__dirname, 'static/assets'),
             images: path.join(__dirname, 'static/images'),
-            actions: path.join(__dirname, 'src/redux/actions'),
-            selectors: path.join(__dirname, 'src/selectors'),
         },
     },
     output: {
@@ -39,6 +40,7 @@ module.exports = {
         hot: true,
         open: true,
         port: 9000,
+        historyApiFallback: true,
     },
     module: {
         rules: [

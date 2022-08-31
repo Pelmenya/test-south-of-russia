@@ -1,10 +1,19 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { NotFoundPage } from '../../pages/not-found-page/not-found';
+import { Switch as Routes, Route } from 'react-router-dom';
+
+import { MainPage } from 'pages/main-page/main-page';
+import { NotFoundPage } from 'pages/not-found-page/not-found';
 
 export const RoutesProvider = () => (
-    <Switch>
-        <Route path="/" component={NotFoundPage} />
-        <Route path="*" component={NotFoundPage} />
-    </Switch>
+    <Routes>
+        <Route path="/" exact>
+            <MainPage />
+        </Route>
+        <Route path="/news">
+            <MainPage />
+        </Route>
+        <Route path="*">
+            <NotFoundPage />
+        </Route>
+    </Routes>
 );

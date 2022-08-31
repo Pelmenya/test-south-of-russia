@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import { mazeBoardReducer } from './slices/maze-board/maze-board';
-import { rulesReducer } from './slices/rules/rules';
+import { newsReducer } from './slices/news/news';
 
 export const rootReducer = combineReducers({
-    rules: rulesReducer,
-    mazeBoard: mazeBoardReducer,
+    news: newsReducer,
 });
