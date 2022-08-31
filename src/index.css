@@ -1,26 +1,14 @@
 body {
-    background: var(--background-alt);
+    margin: 0;
 }
 
-.center-container {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 60px;
-}
-
-.text_color_interface {
-    color: var(--colors-interface-success);
-}
-
-.main-column-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-:root{
-    --color-button: #f9a600;
-    --color-button-light: #f9bb00;
+:root {
+    --main: #f9a600;
+    --secondary: #f3bd15;
+    --accent: #d14d30;
+    --black: #121210;
+    --white: #fff;
+    --grey: #aaa9ad;
+    --error: #d14d30;
+    --body-color: #e5eaf1;
 }
