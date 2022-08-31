@@ -32,7 +32,7 @@ export const initialNewsState = {
 
 export const fetchNewsData = createAsyncThunk(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/return-await
-    'news/fetchNewsData', async () => await (await newsAPI.getNews() || {}).data,
+    'news/fetchNewsData', async () => await (await newsAPI.getNews()).data,
 );
 
 const newsSlice = createSlice({
