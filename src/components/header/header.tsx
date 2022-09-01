@@ -29,7 +29,7 @@ const ButtonsContainer = styled('div')(
 );
 
 export const Header = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const history = useHistory();
     const { newsFavorites } = useAppSelector(getNewsState);
 
