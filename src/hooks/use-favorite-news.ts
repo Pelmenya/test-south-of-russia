@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { getNewsState } from 'services/redux/selectors/news/news';
 import { setFavoritesNews, setLazyNews, setNews } from 'services/redux/slices/news/news';

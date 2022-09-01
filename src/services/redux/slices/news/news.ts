@@ -59,6 +59,15 @@ const newsSlice = createSlice({
         setNews: (state, action) => {
             state.news = action.payload;
         },
+
+        refreshNews: (state) => {
+            state.loading = 'idle';
+            state.news = null;
+            state.newsLazy = null;
+            state.newsFavorites = [];
+            state.step = 0;
+            state.maxSteps = 2;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchNewsData.pending, (state) => {
@@ -87,5 +96,6 @@ export const {
     setFavoritesNews,
     setLazyNews,
     setNews,
+    refreshNews,
 } = newsSlice.actions;
 export const newsReducer = newsSlice.reducer;

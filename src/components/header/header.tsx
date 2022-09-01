@@ -1,9 +1,9 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/jsx-props-no-spreading */
 // отключил, т.к. по default spread в mui
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
-    AppBar, Box, Toolbar, Typography,
+    AppBar, Box, Toolbar,
 } from '@mui/material';
 
 import Button from '@mui/material/Button';
@@ -12,11 +12,13 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
 import { styled, css } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import './header.css';
 import { useAppSelector } from 'hooks/use-app-selector';
 import { getNewsState } from 'services/redux/selectors/news/news';
+import { useDispatch } from 'react-redux';
+import { refreshNews } from 'services/redux/slices/news/news';
 
 const ButtonsContainer = styled('div')(
     () => css`
@@ -27,7 +29,14 @@ const ButtonsContainer = styled('div')(
 );
 
 export const Header = () => {
+    const dispatch = useDispatch()
+    const history = useHistory();
     const { newsFavorites } = useAppSelector(getNewsState);
+
+    const handlerOnCLickRefresh = useCallback(() => {
+        dispatch(refreshNews());
+        history.push('/');
+    }, []);
 
     return (
         <header>
@@ -53,7 +62,7 @@ export const Header = () => {
                                     )}
                                 </PopupState>
                             ) : null}
-                            <Button variant="contained" color="info">
+                            <Button variant="contained" color="info" onClick={handlerOnCLickRefresh}>
                                 Refresh
                             </Button>
                         </ButtonsContainer>

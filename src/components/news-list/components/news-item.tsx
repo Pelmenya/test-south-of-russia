@@ -12,9 +12,6 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 import { useHistory } from 'react-router-dom';
 import { Flex } from 'components/flex/flex';
-import { useDispatch, useSelector } from 'react-redux';
-import { getNewsState } from 'services/redux/selectors/news/news';
-import { setFavoritesNews, setLazyNews, setNews } from 'services/redux/slices/news/news';
 import { useFavoritesNews } from 'hooks/use-favorite-news';
 
 const Item = styled(Paper)(({ theme }) => ({
