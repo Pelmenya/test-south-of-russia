@@ -59,33 +59,31 @@ export const NewsList = () => {
         return () => observer.disconnect();
     }, [placeholder, dispatch, newsLazy, step, news]);
 
+    if (!newsLazy) return null;
+
     return (
-        <div>
-            {newsLazy && (
-                <>
-                    <Grid container spacing={2} mt={2}>
-                        {newsLazy.map((item) => (
-                            <NewsItem
-                                key={item.innerId}
-                                author={item.author}
-                                title={item.title}
-                                url={item.url}
-                                urlToImage={item.urlToImage}
-                                innerId={item.innerId}
-                                publishedAt={item.publishedAt}
-                                description={item.description}
-                                content={item.content}
-                                source={item.source}
-                                isFavorite={item.isFavorite}
-                                rating={item.rating}
-                            />
-                        ))}
-                    </Grid>
-                    <LoadingContainer>
-                        <LazyPlaceholder ref={placeholder} />
-                    </LoadingContainer>
-                </>
-            )}
-        </div>
+        <>
+            <Grid container spacing={2} mt={2} padding={0}>
+                {newsLazy.map((item) => (
+                    <NewsItem
+                        key={item.innerId}
+                        author={item.author}
+                        title={item.title}
+                        url={item.url}
+                        urlToImage={item.urlToImage}
+                        innerId={item.innerId}
+                        publishedAt={item.publishedAt}
+                        description={item.description}
+                        content={item.content}
+                        source={item.source}
+                        isFavorite={item.isFavorite}
+                        rating={item.rating}
+                    />
+                ))}
+            </Grid>
+            <LoadingContainer>
+                <LazyPlaceholder ref={placeholder} />
+            </LoadingContainer>
+        </>
     );
 };

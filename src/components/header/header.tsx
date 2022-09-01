@@ -6,7 +6,7 @@ import {
 import Button from '@mui/material/Button';
 
 import { styled, css } from '@mui/material/styles';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import './header.css';
 import { useAppSelector } from 'hooks/use-app-selector';
@@ -18,13 +18,14 @@ import { MenuFavoritesNews } from './components/menu-favorites-news/menu-favorit
 const ButtonsContainer = styled('div')(
     () => css`
     display: flex;
-    width: 100%;
     gap: 24px;
     `,
 );
 
 export const Header = () => {
     const dispatch = useDispatch();
+    const location = useLocation();
+
     const history = useHistory();
     const { newsFavorites } = useAppSelector(getNewsState);
 
@@ -38,10 +39,9 @@ export const Header = () => {
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position="static">
                     <Toolbar>
-
                         <ButtonsContainer>
                             <Link to="/" className="logo-link">News Explorer</Link>
-                            {newsFavorites?.length ? (
+                            {newsFavorites?.length && location.pathname === '/' ? (
                                 <MenuFavoritesNews />
                             ) : null}
                             <Button variant="contained" color="info" onClick={handlerOnCLickRefresh}>

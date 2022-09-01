@@ -1,0 +1,12 @@
+.news-page__title {
+    text-align: center;
+}
+
+.news-page__img {
+    width: 70%;
+    border-radius: 20px;
+}
+
+.news-page__container {
+    align-items: center;
+}

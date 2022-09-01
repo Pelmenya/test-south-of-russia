@@ -5,7 +5,7 @@ import { INewsItem } from 'utils/types/news-item';
 import Grid from '@mui/material/Unstable_Grid2';
 
 import './news-item.css';
-import { formatOrderTime } from 'utils/functions/format-order-time';
+import { formatTime } from 'utils/functions/format-time';
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -41,7 +41,7 @@ export const NewsItem = ({
     const { handlerOnCLickFavoriteIcon } = useFavoritesNews(isFavorite, innerId);
     const history = useHistory();
 
-    const date = useMemo(() => formatOrderTime(publishedAt), [publishedAt]);
+    const date = useMemo(() => formatTime(publishedAt), [publishedAt]);
 
     const handlerOnCLickNewItem = useCallback(() => history.push(`/news/${innerId}`), []);
 
