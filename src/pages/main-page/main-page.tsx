@@ -16,7 +16,7 @@ import { NewsList } from 'components/news-list/news-list';
 import { countOfBatch } from 'utils/constants/constants';
 
 export const MainPage = () => {
-    const { news } = useAppSelector(getNewsState);
+    const { news, loading } = useAppSelector(getNewsState);
 
     const dispatch = useDispatch();
 
@@ -27,11 +27,12 @@ export const MainPage = () => {
     }, [news]);
 
     useEffect(() => {
-        if (news && !news[0].innerId) {
-            dispatch(setInnerId(news.map((item) => ({ ...item, innerId: shortId.generate() }))));
-            dispatch(setMaxSteps(Math.ceil(news.length / countOfBatch)));
+        if (loading === 'succeeded') {
+            if (news) {
+                dispatch(setInnerId(news.map((item) => ({ ...item, innerId: shortId.generate() }))));
+            }
         }
-    }, [news]);
+    }, [loading]);
 
     return (
         <Container sx={{

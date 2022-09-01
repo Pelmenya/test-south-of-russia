@@ -1,16 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { styled, css, Typography } from '@mui/material';
-import shortId from 'shortid';
+import React, { useEffect, useRef } from 'react';
+import { styled, css } from '@mui/material';
 
 import Grid from '@mui/material/Unstable_Grid2';
 import { useAppSelector } from 'hooks/use-app-selector';
 import { getNewsState } from 'services/redux/selectors/news/news';
 import { useDispatch } from 'react-redux';
-import { addBatchNews, incrementStep } from 'services/redux/slices/news/news';
+import { addBatchNews, incrementStep, setInnerId } from 'services/redux/slices/news/news';
 import { countOfBatch } from 'utils/constants/constants';
 import { NewsItem } from './components/news-item';
-
-const nextPage = () => { };
 
 const LazyPlaceholder = styled('div')(
     () => css`
@@ -60,20 +57,26 @@ export const NewsList = () => {
             observer.observe(placeholder.current);
         }
         return () => observer.disconnect();
-    }, [placeholder, dispatch, newsLazy, step]);
+    }, [placeholder, dispatch, newsLazy, step, news]);
 
     return (
         <div>
             {newsLazy && (
                 <>
                     <Grid container spacing={2} mt={2}>
-                        {newsLazy.map((item, index) => (
-                            <Grid key={item.innerId + String(index)} xs={3}>
-                                <NewsItem>
-                                    <img className="news-image" src={item.urlToImage} alt={item.description} />
-                                    <Typography variant="h6">{item.title}</Typography>
-                                </NewsItem>
-                            </Grid>
+                        {newsLazy.map((item) => (
+                            <NewsItem
+                                key={item.innerId}
+                                author={item.author}
+                                title={item.title}
+                                url={item.url}
+                                urlToImage={item.urlToImage}
+                                innerId={item.innerId}
+                                publishedAt={item.publishedAt}
+                                description={item.description}
+                                content={item.content}
+                                source={item.source}
+                            />
                         ))}
                     </Grid>
                     <LoadingContainer>

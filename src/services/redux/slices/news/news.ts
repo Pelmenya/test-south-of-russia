@@ -1,22 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { newsAPI } from 'api/news-api';
+import { countOfBatch } from 'utils/constants/constants';
 import { LoadingType } from 'utils/types/loading';
+import { INewsItem } from 'utils/types/news-item';
 import { Nullable } from 'utils/types/nullable';
-
-export interface INewsItem {
-    author: string;
-    content: string;
-    description: string;
-    publishedAt: string;
-    source: {
-        id: string;
-        name: string;
-    }
-    title: string;
-    url: string;
-    urlToImage: string;
-    innerId: string;
-}
 
 export interface INewsList {
     news: Nullable<INewsItem[]>;
@@ -26,7 +13,7 @@ export interface INewsList {
 }
 
 export interface INewsState extends INewsList, LoadingType {
-    error?:string;
+    error?: string;
 }
 
 export const initialNewsState = {
@@ -48,8 +35,9 @@ const newsSlice = createSlice({
         clearError: (state) => {
             state.error = undefined;
         },
-        setInnerId: (state, action) => {
+        setInnerId: (state, action: { type: string, payload: INewsItem[] }) => {
             state.news = action.payload;
+            state.newsLazy = action.payload.slice(0, countOfBatch);
         },
         setMaxSteps: (state, action) => {
             state.maxSteps = action.payload;
@@ -69,7 +57,7 @@ const newsSlice = createSlice({
         });
         builder.addCase(fetchNewsData.fulfilled, (state, action) => {
             state.news = action.payload.articles;
-            state.newsLazy = action.payload.articles.slice(0, 20);
+            state.maxSteps = Math.ceil(action.payload.articles.length / countOfBatch);
             state.step += 1;
             state.loading = 'succeeded';
         });
