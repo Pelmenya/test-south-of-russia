@@ -75,7 +75,9 @@ const newsSlice = createSlice({
             state.error = undefined;
         });
         builder.addCase(fetchNewsData.fulfilled, (state, action) => {
-            state.news = action.payload.articles;
+            state.news = [
+                ...action.payload.articles
+                    .sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))];
             state.maxSteps = Math.ceil(action.payload.articles.length / countOfBatch);
             state.step += 1;
             state.loading = 'succeeded';

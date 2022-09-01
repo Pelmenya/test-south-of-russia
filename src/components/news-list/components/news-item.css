@@ -45,6 +45,7 @@
     -webkit-box-orient: vertical;
     line-height: 11px;
     height: 22px;
+    padding-left: 8px;
 }
 
 .news-item__heart {
