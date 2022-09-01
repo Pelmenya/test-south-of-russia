@@ -5,7 +5,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { useAppSelector } from 'hooks/use-app-selector';
 import { getNewsState } from 'services/redux/selectors/news/news';
 import { useDispatch } from 'react-redux';
-import { addBatchNews, incrementStep, setInnerId } from 'services/redux/slices/news/news';
+import { addBatchNews, incrementStep } from 'services/redux/slices/news/news';
 import { countOfBatch } from 'utils/constants/constants';
 import { NewsItem } from './components/news-item';
 
@@ -76,6 +76,8 @@ export const NewsList = () => {
                                 description={item.description}
                                 content={item.content}
                                 source={item.source}
+                                isFavorite={item.isFavorite}
+                                rating={item.rating}
                             />
                         ))}
                     </Grid>

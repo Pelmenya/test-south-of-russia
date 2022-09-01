@@ -8,6 +8,7 @@ import { Nullable } from 'utils/types/nullable';
 export interface INewsList {
     news: Nullable<INewsItem[]>;
     newsLazy: Nullable<INewsItem[]>;
+    newsFavorites: INewsItem[] | [];
     step: number;
     maxSteps: number;
 }
@@ -20,6 +21,7 @@ export const initialNewsState = {
     loading: 'idle',
     news: null,
     newsLazy: null,
+    newsFavorites: [],
     step: 0,
     maxSteps: 2,
 } as INewsState;
@@ -48,7 +50,15 @@ const newsSlice = createSlice({
         addBatchNews: (state, action) => {
             state.newsLazy = action.payload;
         },
-
+        setFavoritesNews: (state, action) => {
+            state.newsFavorites = action.payload;
+        },
+        setLazyNews: (state, action) => {
+            state.newsLazy = action.payload;
+        },
+        setNews: (state, action) => {
+            state.news = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchNewsData.pending, (state) => {
@@ -74,5 +84,8 @@ export const {
     addBatchNews,
     setMaxSteps,
     incrementStep,
+    setFavoritesNews,
+    setLazyNews,
+    setNews,
 } = newsSlice.actions;
 export const newsReducer = newsSlice.reducer;

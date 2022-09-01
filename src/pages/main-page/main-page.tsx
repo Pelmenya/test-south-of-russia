@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import shortId from 'shortid';
 
 import { Title } from 'components/title/title';
-import { fetchNewsData, setInnerId, setMaxSteps } from 'services/redux/slices/news/news';
+import { fetchNewsData, setInnerId } from 'services/redux/slices/news/news';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'hooks/use-app-selector';
 import { getNewsState } from 'services/redux/selectors/news/news';
@@ -13,10 +13,10 @@ import { Container } from '@mui/material';
 
 import './main-page.css';
 import { NewsList } from 'components/news-list/news-list';
-import { countOfBatch } from 'utils/constants/constants';
+import { getRandomRating } from 'utils/functions/get-random-rating';
 
 export const MainPage = () => {
-    const { news, loading } = useAppSelector(getNewsState);
+    const { news, newsLazy, loading } = useAppSelector(getNewsState);
 
     const dispatch = useDispatch();
 
@@ -28,11 +28,13 @@ export const MainPage = () => {
 
     useEffect(() => {
         if (loading === 'succeeded') {
-            if (news) {
-                dispatch(setInnerId(news.map((item) => ({ ...item, innerId: shortId.generate() }))));
+            if (news && !newsLazy) {
+                dispatch(setInnerId(
+                    news.map((item) => ({ ...item, innerId: shortId.generate(), rating: getRandomRating() })),
+                ));
             }
         }
-    }, [loading]);
+    }, [loading, newsLazy]);
 
     return (
         <Container sx={{

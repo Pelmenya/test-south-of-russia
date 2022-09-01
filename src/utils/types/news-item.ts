@@ -11,4 +11,6 @@ export interface INewsItem {
     url: string;
     urlToImage: string;
     innerId: string;
+    isFavorite?: boolean;
+    rating?: number;
 }

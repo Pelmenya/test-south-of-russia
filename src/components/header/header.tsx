@@ -15,6 +15,8 @@ import { styled, css } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
 import './header.css';
+import { useAppSelector } from 'hooks/use-app-selector';
+import { getNewsState } from 'services/redux/selectors/news/news';
 
 const ButtonsContainer = styled('div')(
     () => css`
@@ -24,30 +26,40 @@ const ButtonsContainer = styled('div')(
     `,
 );
 
-export const Header = () => (
-    <header>
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar>
-                    <ButtonsContainer>
-                        <Link to="/" className="logo-link">News Explorer</Link>
-                        <PopupState variant="popover" popupId="favorite-popup-menu">
-                            {(popupState) => (
-                                <>
-                                    <Button variant="contained" color="info" {...bindTrigger(popupState)}>
-                                        Favourites
-                                    </Button>
-                                    <Menu {...bindMenu(popupState)}>
-                                        <MenuItem onClick={() => popupState.close()}>Profile sdfg sdf sdf</MenuItem>
-                                        <MenuItem onClick={popupState.close}>My account</MenuItem>
-                                        <MenuItem onClick={popupState.close}>Logout</MenuItem>
-                                    </Menu>
-                                </>
-                            )}
-                        </PopupState>
-                    </ButtonsContainer>
-                </Toolbar>
-            </AppBar>
-        </Box>
-    </header>
-);
+export const Header = () => {
+    const { newsFavorites } = useAppSelector(getNewsState);
+
+    return (
+        <header>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static">
+                    <Toolbar>
+
+                        <ButtonsContainer>
+                            <Link to="/" className="logo-link">News Explorer</Link>
+                            {newsFavorites?.length ? (
+                                <PopupState variant="popover" popupId="favorite-popup-menu">
+                                    {(popupState) => (
+                                        <>
+                                            <Button variant="contained" color="info" {...bindTrigger(popupState)}>
+                                                Favourites
+                                            </Button>
+                                            <Menu {...bindMenu(popupState)}>
+                                                <MenuItem onClick={() => popupState.close()}>Pro sdf sdf</MenuItem>
+                                                <MenuItem onClick={popupState.close}>My account</MenuItem>
+                                                <MenuItem onClick={popupState.close}>Logout</MenuItem>
+                                            </Menu>
+                                        </>
+                                    )}
+                                </PopupState>
+                            ) : null}
+                            <Button variant="contained" color="info">
+                                Refresh
+                            </Button>
+                        </ButtonsContainer>
+                    </Toolbar>
+                </AppBar>
+            </Box>
+        </header>
+    );
+};

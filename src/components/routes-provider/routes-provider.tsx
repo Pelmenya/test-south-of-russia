@@ -9,8 +9,8 @@ export const RoutesProvider = () => (
         <Route path="/" exact>
             <MainPage />
         </Route>
-        <Route path="/news">
-            <MainPage />
+        <Route path="/news/:id">
+            <div>Страница Новости</div>
         </Route>
         <Route path="*">
             <NotFoundPage />
