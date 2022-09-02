@@ -64,7 +64,7 @@ export const NewsPage = () => {
                                     </Button>
                                 )}
                             <a target="_blank" rel="noreferrer" href={newsItem.url}>
-                                <Button variant="text" onClick={handlerIsFavorite}>
+                                <Button variant="text">
                                     Ссылка на статью
                                 </Button>
                             </a>
