@@ -45,7 +45,7 @@
 
 Сохраните проект у себя на компьютере:
 ```
-https://github.com/Pelmenya/test-south-of-russia.git
+git clone https://github.com/Pelmenya/test-south-of-russia.git
 ```
 В корне проекта через консоль/терминал запустите команду:
 ```
