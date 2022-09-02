@@ -4,17 +4,17 @@ body {
 
 *::-webkit-scrollbar {
     width: 6px;
-  }
+}
   
-  *::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
     background: #e5eaf1;
     border-radius: 4px;
-  }
+}
   
-  *::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
     background: #1976d2;
     border-radius: 4px;
-  }
+}
 
 :root {
     --main: #f9a600;

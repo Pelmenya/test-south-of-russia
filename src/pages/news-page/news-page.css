@@ -10,3 +10,8 @@
 .news-page__container {
     align-items: center;
 }
+
+.news-page__right-toolbar {
+    align-items: center;
+    width: 200px;
+}

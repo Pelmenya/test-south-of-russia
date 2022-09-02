@@ -34,6 +34,10 @@ export const Header = () => {
         history.push('/');
     }, []);
 
+    const handlerOnCLickMain = useCallback(() => {
+        history.push('/');
+    }, []);
+
     return (
         <header>
             <Box sx={{ flexGrow: 1 }}>
@@ -45,8 +49,13 @@ export const Header = () => {
                                 <MenuFavoritesNews />
                             ) : null}
                             <Button variant="contained" color="info" onClick={handlerOnCLickRefresh}>
-                                Refresh
+                                Обновить
                             </Button>
+                            {location.pathname !== '/' ? (
+                                <Button variant="contained" color="info" onClick={handlerOnCLickMain}>
+                                    На главную
+                                </Button>
+                            ) : null}
                         </ButtonsContainer>
                     </Toolbar>
                 </AppBar>

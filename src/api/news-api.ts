@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { BASE_URL } from 'utils/constants/api-routes';
-import { checkResponse } from 'utils/functions/check-response';
 
 export interface UserData {
     name: string;
@@ -15,7 +14,7 @@ class NewsAPI {
         this.server = server;
     }
 
-    getNews = async () => axios.get(BASE_URL).then(checkResponse);
+    getNews = async () => axios.get(BASE_URL);
 }
 
 export const newsAPI = new NewsAPI(BASE_URL);

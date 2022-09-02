@@ -22,7 +22,7 @@ export const MenuFavoritesNews = () => {
             {(popupState) => (
                 <>
                     <Button variant="contained" color="info" {...bindTrigger(popupState)}>
-                        Favourites
+                        Избранное
                     </Button>
                     <Menu {...bindMenu(popupState)} className="menu-favorites-news">
                         {newsFavorites
