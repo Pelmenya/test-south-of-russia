@@ -1,5 +1,5 @@
 # Тестовое задание "Юг Руси"
-# [Сайт на Heroku](https://test-south-of-russia.herokuapp.com)
+# [Сайт](https://test-south-of-russia.website.yandexcloud.net)
 
 ##  Тема: "Разработать интерфейс, состоящий из двух страниц"
 
